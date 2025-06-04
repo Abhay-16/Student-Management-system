@@ -1,0 +1,51 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+	<title>WELCOME</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+				<h3>WELCOME TO STUDENT DATA PAGE </h3>
+			</div>
+			<div class="card-body">
+				<a th:href="@{/student/register}" class="btn btn-warning"> REGISTER</a>
+				<table class="table table-hover">
+					<tr class="bg-info text-white">
+						<th>ID</th>
+						<th>NAME</th>
+						<th>SAL</th>
+						<th>DEPT</th>
+						<th>GENDER</th>
+						<th>ADDRESS</th>
+						<th>OPERATIONS</th>
+					</tr>
+
+					<tr th:each="ob:${list}">
+						<td>[[${ob.studentId}]]</td>
+						<td>[[${ob.name}]]</td>
+						<td>[[${ob.salary}]]</td>
+						<td>[[${ob.dept}]]</td>
+						<td>[[${ob.gender}]]</td>
+						<td>[[${ob.address}]]</td>
+						<td>
+						<a th:href="@{/student/delete(id=${ob.studentId})}" class="btn btn-danger">DELETE</a> |
+						<a th:href="@{/student/edit(id=${ob.studentId})}"	class="btn btn-warning">EDIT</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<!--Card footer-->
+
+			<div class="card-footer bg-info text-white" th:if="${message!=null}">
+				[[${message}]]
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
